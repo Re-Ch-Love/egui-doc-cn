@@ -58,7 +58,7 @@ ui.label(format!("Hello '{}', age {}", name, age));
 
 ## 样例
 
-[点此运行 Web 样例](https://www.egui.rs/#demo) （支持任何支持WASM和WebGL的浏览器）。使用 [`eframe`](https://github.com/emilk/egui/tree/master/eframe)。
+[点此运行 Web 样例](https://www.egui.rs/#demo) （可运行于任何支持WASM和WebGL的浏览器）。使用 [`eframe`](https://github.com/emilk/egui/tree/master/eframe)。
 
 若要在本地测试样例 App，运行 `cargo run --release -p egui_demo_app`。
 
