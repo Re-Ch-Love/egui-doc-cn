@@ -9,11 +9,6 @@
 [![Apache](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/emilk/egui/blob/master/LICENSE-APACHE)
 [![Discord](https://img.shields.io/discord/900275882684477440?label=egui%20discord)](https://discord.gg/JFcEma9bJq)
 
-语言：
-[英文](https://github.com/emilk/egui/blob/master/README.md)
-|
-[简体中文](https://github.com/emilk/egui/blob/master/README_zh-hans.md)
-
 👉 [点此运行 Web 样例](https://www.egui.rs/#demo) 👈
 
 egui 是一个简单、快速、高度可移植的 Rust 即时模式 GUI 库。egui 可运行于 Web, 原生（*Native*） 甚至 [你喜欢的的游戏引擎](#integrations) （或者很快）。
