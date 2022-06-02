@@ -11,5 +11,6 @@
 *此仓库中的文档尽可能与官方英文文档同步，但不能保证即时更新，查看时请注意是否过时，目前的版本与 [commit e6cfa50](https://github.com/emilk/egui/commit/e6cfa5028e2dd222ead311cf790d192ff401d0b9) 同步*
 
 ## 计划
+- [ ] 完成 README.md 的全部翻译。
 - [ ] 对 Integration 一词更信达雅的翻译。
 - [ ] 逐步翻译 Web Demo 和其他文档。
