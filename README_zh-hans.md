@@ -24,12 +24,14 @@ egui 可以在任何可以绘制纹理三角形（textured triangles）的地方
 * [样例 Demo](#样例)
 * [目标](#目标)
 * [egui 是为谁设计的？](#egui-是为谁设计的)
-* [State / features](#state)
-* [Integrations](#integrations)
-* [Why immediate mode](#why-immediate-mode)
+* [状态/特性](#状态)
+* [集成](#集成)
+* [为什么使用即时模式](#为什么使用即时模式)
 * [FAQ](#faq)
-* [Other](#other)
-* [Credits](#credits)
+* [其他](#其他)
+* [鸣谢](#鸣谢)
+
+([egui 的中文翻译文档 / chinese translation](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README_zh-hans.md))
 
 ## 示例
 
@@ -50,15 +52,19 @@ ui.label(format!("Hello '{}', age {}", name, age));
 
 ## 快速上手
 
-[范例目录](https://github.com/emilk/egui/blob/master/examples/)（`examples/`）中有一些简单的范例。如果你想写一个 Web App，请按照 <https://github.com/emilk/eframe_template/>的说明操作。官方文档位于 <https://docs.rs/egui>。要获得更多灵感或范例，请查看 [egui web 样例](https://www.egui.rs/#demo) 并按照其中的链接访问源代码。
+[范例目录](https://github.com/emilk/egui/blob/master/examples/)（`examples/`）中有一些简单的范例。如果你想写一个 Web App，请按照 <https://github.com/emilk/eframe_template/>的说明操作。
 
-如果你想要将egui集成到现有的引擎中，请前往  [集成](#集成) 一节.
+官方文档位于 <https://docs.rs/egui>。要获得更多灵感或范例，请查看 [egui web 样例](https://www.egui.rs/#demo) 并按照其中的链接访问源代码。
 
-如果有疑问，请访问 [GitHub Discussions](https://github.com/emilk/egui/discussions) 或 [egui discord 服务器](https://discord.gg/JFcEma9bJq)。如果你想贡献给 egui，请阅读 [Contributing Guidelines](https://github.com/emilk/egui/blob/master/CONTRIBUTING.md).
+如果你想要将egui集成到现有的引擎中，请前往  [集成](#集成) 一节。
+
+如果有疑问，请访问 [GitHub Discussions](https://github.com/emilk/egui/discussions) 或 [egui discord 服务器](https://discord.gg/JFcEma9bJq)。
+
+如果你想贡献给 egui，请阅读 [Contributing Guidelines](https://github.com/emilk/egui/blob/master/CONTRIBUTING.md).
 
 ## 样例
 
-[点此运行 Web 样例](https://www.egui.rs/#demo) （可运行于任何支持WASM和WebGL的浏览器）。使用 [`eframe`](https://github.com/emilk/egui/tree/master/eframe)。
+[点此运行 Web 样例](https://www.egui.rs/#demo) （可运行于任何支持 WASM 和 WebGL 的浏览器）。使用 [`eframe`](https://github.com/emilk/egui/tree/master/eframe)。
 
 若要在本地测试样例 App，运行 `cargo run --release -p egui_demo_app`。
 
@@ -131,8 +137,6 @@ egui 在活跃开发中。它做的不错，但缺少许多特性，接口仍在
 
 ### 特性
 
-*译者注：这一段个人认为不宜翻译。*
-
 * Widgets: label, text button, hyperlink, checkbox, radio button, slider, draggable value, text editing, combo box, color picker
 * Layouts: horizontal, vertical, columns, automatic wrapping
 * Text editing: multiline, copy/paste, undo, emoji supports
@@ -162,8 +166,6 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 * **绘制**：渲染 egui 生成的三角形网格（参考 [OpenGL example](https://github.com/emilk/egui/blob/master/egui_glium/src/painter.rs)）
 
 ### 官方集成
-
-*译者注：个人认为仓库列表不应该翻译。*
 
 以下是 egui 官方集成：
 
@@ -197,7 +199,7 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 
 ### 编写你自己的 egui 集成
 
-你需要采集 [`egui::RawInput`](https://docs.rs/egui/latest/egui/struct.RawInput.html) 并处理 [`egui::FullOutput`](https://docs.rs/egui/latest/egui/struct.FullOutput.html)。基本结构如下
+你需要采集 [`egui::RawInput`](https://docs.rs/egui/latest/egui/struct.RawInput.html) 并处理 [`egui::FullOutput`](https://docs.rs/egui/latest/egui/struct.FullOutput.html)。基本结构如下：
 
 ``` rust
 let mut egui_ctx = egui::CtxRef::default();
@@ -232,32 +234,34 @@ loop {
 
 #### 文字看起来很模糊
 
-* 确保在 egui 输入中设置了正确的 `pixels_per_point`。
-* 确保纹理采样器未关闭半像素。尝试使用最邻近采样器来检查。
+* Make sure you set the proper `pixels_per_point` in the input to egui.
+* Make sure the texture sampler is not off by half a pixel. Try nearest-neighbor sampler to check.
 
 #### 窗口太透明或太暗
 
-* egui 使用预乘 alpha，因此，请确保您的混合函数是 `(ONE, ONE_MINUS_SRC_ALPHA)`。
-* 确保纹理采样器已钳制（`GL_CLAMP_TO_EDGE`）。
-* egui 对所有混合使用线性颜色空间，因此
-  * 使用sRGBA-aware纹理（如果可用）（例如 `GL_SRGB8_ALPHA8`).
+* egui uses premultiplied alpha, so make sure your blending function is `(ONE, ONE_MINUS_SRC_ALPHA)`.
+* Make sure your texture sampler is clamped (`GL_CLAMP_TO_EDGE`).
+* egui prefers linear color spaces for all blending so:
+  * Use an sRGBA-aware texture if available (e.g. `GL_SRGB8_ALPHA8`).
     * Otherwise: remember to decode gamma in the fragment shader.
   * Decode the gamma of the incoming vertex colors in your vertex shader.
   * Turn on sRGBA/linear framebuffer if available (`GL_FRAMEBUFFER_SRGB`).
     * Otherwise: gamma-encode the colors before you write them again.
 
 
-## Why immediate mode
+## 为什么使用即时模式
 
-`egui` is an [immediate mode GUI library](https://en.wikipedia.org/wiki/Immediate_mode_GUI), as opposed to a *retained mode* GUI library. The difference between retained mode and immediate mode is best illustrated with the example of a button: In a retained GUI you create a button, add it to some UI and install some on-click handler (callback). The button is retained in the UI, and to change the text on it you need to store some sort of reference to it. By contrast, in immediate mode you show the button and interact with it immediately, and you do so every frame (e.g. 60 times per second). This means there is no need for any on-click handler, nor to store any reference to it. In `egui` this looks like this: `if ui.button("Save file").clicked() { save(file); }`.
+`egui` 是一个 [即时模式 GUI 库](https://en.wikipedia.org/wiki/Immediate_mode_GUI)，而不是*保留模式* GUI 库。 关于它们的区别，最好的例子就是按钮：In a retained GUI you create a button, add it to some UI and install some on-click handler (callback). The button is retained in the UI, and to change the text on it you need to store some sort of reference to it. By contrast, in immediate mode you show the button and interact with it immediately, and you do so every frame (e.g. 60 times per second). This means there is no need for any on-click handler, nor to store any reference to it. In `egui` this looks like this: `if ui.button("Save file").clicked() { save(file); }`.
 
-A more detailed description of immediate mode can be found [in the `egui` docs](https://docs.rs/egui/latest/egui/#understanding-immediate-mode).
+*译者注：很抱歉，这里实在是不知道该怎么翻译，总觉得很奇怪。关于即时模式和保留模式的区别可以看看 [这篇](https://docs.microsoft.com/zh-cn/windows/win32/learnwin32/retained-mode-versus-immediate-mode)。*
 
-There are advantages and disadvantages to both systems.
+有关即时模式的更详细描述，请参见 [in the `egui` docs](https://docs.rs/egui/latest/egui/#understanding-immediate-mode).
 
-The short of it is this: immediate mode GUI libraries are easier to use, but less powerful.
+这两种系统各有优缺点。
 
-### Advantages of immediate mode
+简单来说，即时模式 GUI 更容易用，但没那么强大。
+
+### 即时模式的优点
 #### Usability
 The main advantage of immediate mode is that the application code becomes vastly simpler:
 
@@ -268,7 +272,7 @@ The main advantage of immediate mode is that the application code becomes vastly
 
 In other words, a whole lot of code, complexity and bugs are gone, and you can focus your time on something more interesting than writing GUI code.
 
-### Disadvantages of immediate mode
+### 即时模式的缺点
 
 #### Layout
 The main disadvantage of immediate mode is it makes layout more difficult. Say you want to show a small dialog window in the center of the screen. To position the window correctly the GUI library must first know the size of it. To know the size of the window the GUI library must first layout the contents of the window. In retained mode this is easy: the GUI library does the window layout, positions the window, then checks for interaction ("was the OK button clicked?").
@@ -303,40 +307,40 @@ Overall, ID handling is a rare inconvenience, and not a big disadvantage.
 
 Also see [GitHub Discussions](https://github.com/emilk/egui/discussions/categories/q-a).
 
-### Can I use `egui` with non-latin characters?
-Yes! But you need to install your own font (`.ttf` or `.otf`) using `Context::set_fonts`.
+### 我可以在 `egui` 中使用非拉丁字符吗?
+是的！但你需要使用 `Context::set_fonts` 安装自己的字体（`.ttf` 或 `.otf`）。
 
-### Can I customize the look of egui?
-Yes! You can customize the colors, spacing, fonts and sizes of everything using `Context::set_style`.
+### 我可以自定义 egui 的外观吗？
+是的！你可以使用 `Context::set_style` 自定义所有东西颜色、间距、字体和大小。
 
-Here is an example (from https://github.com/AlexxxRu/TinyPomodoro):
+这里有个例子（来自 https://github.com/AlexxxRu/TinyPomodoro）
 
 <img src="media/pompodoro-skin.png" width="50%">
 
-### How do I use egui with `async`?
-If you call `.await` in your GUI code, the UI will freeze, which is very bad UX. Instead, keep the GUI thread non-blocking and communicate with any concurrent tasks (`async` tasks or other threads) with something like:
+### 我该如何与 `async` 一起使用 egui？
+如果你在 GUI 代码中调用 `.await`，UI 会冻结，用户体验将会很差。替代方案是，保持 GUI 线程不阻塞的情况下与并发任务通信（`async` 任务或任何其他线程）。你可以用下面的方法实现。
 * Channels (e.g. [`std::sync::mpsc::channel`](https://doc.rust-lang.org/std/sync/mpsc/fn.channel.html)). Make sure to use [`try_recv`](https://doc.rust-lang.org/std/sync/mpsc/struct.Receiver.html#method.try_recv) so you don't block the gui thread!
 * `Arc<Mutex<Value>>` (background thread sets a value; GUI thread reads it)
 * [`poll_promise::Promise`](https://docs.rs/poll-promise) (example: [`examples/download_image/`](https://github.com/emilk/egui/blob/master/examples/download_image/))
 * [`eventuals::Eventual`](https://docs.rs/eventuals/latest/eventuals/struct.Eventual.html)
 * [`tokio::sync::watch::channel`](https://docs.rs/tokio/latest/tokio/sync/watch/fn.channel.html)
 
-### What about accessibility, such as screen readers?
-There is experimental support for a screen reader. In [the web demo](https://www.egui.rs/#demo) you can enable it in the "Backend" tab.
+### 可访问性如何？比如屏幕阅读器？
+屏幕阅读器有实验性的支持。你可以在 [the web demo](https://www.egui.rs/#demo) 的 `Backend` 选项卡中打开它。
 
-Read more at <https://github.com/emilk/egui/issues/167>.
+了解更多 <https://github.com/emilk/egui/issues/167>.
 
-### What is the difference between [egui](https://docs.rs/egui) and [eframe](https://github.com/emilk/egui/tree/master/eframe)?
+### [egui](https://docs.rs/egui) 和 [eframe](https://github.com/emilk/egui/tree/master/eframe) 的区别是什么？
 
-`egui` is a 2D user interface library for laying out and interacting with buttons, sliders, etc.
-`egui` has no idea if it is running on the web or natively, and does not know how to collect input or show things on screen.
-That is the job of *the integration* or *backend*.
+`egui` 是一个有布局和交互功能的 2D 用户界面库。
+`egui` 无法知道它的运行环境，也不知道如何获取输入/输出到显示器。
+这是 *集成* 或 *后端* 的任务。
 
-It is common to use `egui` from a game engine (using e.g. [`bevy_egui`](https://docs.rs/bevy_egui)),
-but you can also use `egui` stand-alone using `eframe`. `eframe` has integration for web and native, and handles input and rendering.
-The _frame_ in `eframe` stands both for the frame in which your egui app resides and also for "framework" (`frame` is a framework, `egui` is a library).
+在游戏引擎中使用 `egui` 是很常见的（比如 [`bevy_egui`](https://docs.rs/bevy_egui)），
+但你也可以依靠 `eframe` 来单独使用 `egui`。`eframe` 有着 Web 和 Native，处理输入和渲染的集成。
+`eframe` 中的 _frame_ 既代表 egui app 中的 帧（frame），又代表框架（framework）（`frame` 是个框架, `egui` 是个库）。
 
-### How do I render 3D stuff in an egui area?
+### 我该如何在 egui 中渲染 3D 内容？
 There are multiple ways to combine egui with 3D. The simplest way is to use a 3D library and have egui sit on top of the 3D view. See for instance [`bevy_egui`](https://github.com/mvlabat/bevy_egui) or [`three-d`](https://github.com/asny/three-d).
 
 If you want to embed 3D into an egui view there are two options.
@@ -356,7 +360,7 @@ Examples:
 * Using [`egui_glium`](https://github.com/emilk/egui/tree/master/egui_glium): <https://github.com/emilk/egui/blob/master/egui_glium/examples/native_texture.rs>.
 
 
-## Other
+## 其他
 
 ### Conventions and design choices
 
@@ -380,7 +384,7 @@ The name of the library and the project is "egui" and pronounced as "e-gooey". P
 
 The library was originally called "Emigui", but was renamed to "egui" in 2020.
 
-## Credits
+## 鸣谢
 
 egui author and maintainer: Emil Ernerfeldt [(@emilk](https://github.com/emilk)).
 
