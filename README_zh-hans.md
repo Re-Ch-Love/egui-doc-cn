@@ -52,9 +52,9 @@ ui.label(format!("Hello '{}', age {}", name, age));
 
 ## 快速上手
 
-[范例目录](https://github.com/emilk/egui/blob/master/examples/)（`examples/`）中有一些简单的范例。如果你想写一个 Web App，请按照 <https://github.com/emilk/eframe_template/>的说明操作。
+[示例目录](https://github.com/emilk/egui/blob/master/examples/)（`examples/`）中有一些简单的示例。如果你想写一个 Web App，请按照 <https://github.com/emilk/eframe_template/>的说明操作。
 
-官方文档位于 <https://docs.rs/egui>。要获得更多灵感或范例，请查看 [egui web 样例](https://www.egui.rs/#demo) 并按照其中的链接访问源代码。
+官方文档位于 <https://docs.rs/egui>。要获得更多灵感或示例，请查看 [egui web 样例](https://www.egui.rs/#demo) 并按照其中的链接访问源代码。
 
 如果你想要将egui集成到现有的引擎中，请前往  [集成](#集成) 一节。
 
