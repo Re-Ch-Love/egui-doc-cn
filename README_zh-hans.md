@@ -32,7 +32,6 @@ egui 可以在任何可以绘制纹理三角形（textured triangles）的地方
 * [鸣谢](#鸣谢)
 
 ([egui 的中文翻译文档 / chinese translation](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README_zh-hans.md))
-*译者注：更多关于中文文档的信息请查看 [README.md](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README.md)*
 
 ## 示例
 
