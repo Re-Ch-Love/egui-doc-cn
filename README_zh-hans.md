@@ -11,7 +11,7 @@
 
 👉 [点此运行 Web 样例](https://www.egui.rs/#demo) 👈
 
-egui 是一个简单、快速、高度可移植的 Rust 即时模式 GUI 库。egui 可运行于 Web, 原生（*Native*） 甚至 [你喜欢的的游戏引擎](#integrations) （或者很快）。
+egui （读作“e-gooey”） 是一个简单、快速、高度可移植的 Rust 即时模式 GUI 库。egui 可运行于 Web, 原生（*Native*） 甚至 [你喜欢的的游戏引擎](#integrations) （或者很快）。
 
 egui 旨在成为最易用的 Rust GUI 库，用最简单的方式创建Web应用程序。
 
@@ -64,11 +64,11 @@ ui.label(format!("Hello '{}', age {}", name, age));
 
 ## 样例
 
-[点此运行 Web 样例](https://www.egui.rs/#demo) （可运行于任何支持 WASM 和 WebGL 的浏览器）。使用 [`eframe`](https://github.com/emilk/egui/tree/master/eframe)。
+[点此运行 Web 样例](https://www.egui.rs/#demo) （可运行于任何支持 WASM 和 WebGL 的浏览器）。使用 [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe)。
 
 若要在本地测试样例 App，运行 `cargo run --release -p egui_demo_app`。
 
-原生后端是 [`egui_glow`](https://github.com/emilk/egui/tree/master/egui_glow)（使用 [`glow`](https://crates.io/crates/glow))，在 Windows 和 Mac 上开箱即用，但如果要在 Linux 上使用，需要先运行：
+原生后端是 [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/egui_glow)（使用 [`glow`](https://crates.io/crates/glow))，在 Windows 和 Mac 上开箱即用，但如果要在 Linux 上使用，需要先运行：
 
 `sudo apt-get install -y libclang-dev libgtk-3-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libspeechd-dev libxkbcommon-dev libssl-dev`
 
@@ -88,7 +88,7 @@ ui.label(format!("Hello '{}', age {}", name, age));
 * 用于自定义绘制的简单 2D 图形 API（[`epaint`](https://docs.rs/epaint)）.
 * 没有回调
 * 纯即时模式
-* 可扩展的：[轻松为 egui 编写自己的 widgets](https://github.com/emilk/egui/blob/master/egui_demo_lib/src/demo/toggle_switch.rs)
+* 可扩展的：[轻松为 egui 编写自己的 widgets](https://github.com/emilk/egui/blob/master/crates/egui_demo_lib/src/demo/toggle_switch.rs)
 * 模块化的：你应该可以使用 egui 中的一小部分，并用新的方式将它们组合起来
 * 安全的：egui 中没有`unsafe`关键字
 * 依赖最小化：[`ab_glyph`](https://crates.io/crates/ab_glyph) [`ahash`](https://crates.io/crates/ahash) [`nohash-hasher`](https://crates.io/crates/nohash-hasher) [`parking_lot`](https://crates.io/crates/parking_lot)
@@ -118,7 +118,7 @@ egui 的明显替代方案是 [`imgui-rs`](https://github.com/Gekkio/imgui-rs)�
 * egui 是纯 Rust 编写的
 * egui 可以很方便的编译为 WASM
 * egui 允许你使用原生Rust字符串类（`imgui-rs` 强制你对以零结尾的字符串使用恼人的宏和包装器）
-* [Writing your own widgets in egui is simple](https://github.com/emilk/egui/blob/master/egui_demo_lib/src/demo/toggle_switch.rs)
+* [Writing your own widgets in egui is simple](https://github.com/emilk/egui/blob/master/crates/egui_demo_lib/src/demo/toggle_switch.rs)
 
 egui 还尝试在一些小地方增加你的体验：
 
@@ -163,17 +163,17 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 * 运行应用程序代码
 * **输出**: 处理 egui 输出 （光标变化、粘贴、纹理分配（*texture allocations*）……）
 
-* **绘制**：渲染 egui 生成的三角形网格（参考 [OpenGL example](https://github.com/emilk/egui/blob/master/egui_glium/src/painter.rs)）
+* **绘制**：渲染 egui 生成的三角形网格（参考 [OpenGL example](https://github.com/emilk/egui/blob/master/crates/egui_glium/src/painter.rs)）
 
 ### 官方集成
 
 以下是 egui 官方集成：
 
-* [`eframe`](https://github.com/emilk/egui/tree/master/eframe) for compiling the same app to web/wasm and desktop/native. Uses `egui_glow` and `egui-winit`.
-* [`egui_glium`](https://github.com/emilk/egui/tree/master/egui_glium) for compiling native apps with [Glium](https://github.com/glium/glium).
-* [`egui_glow`](https://github.com/emilk/egui/tree/master/egui_glow) for rendering egui with [glow](https://github.com/grovesNL/glow) on native and web, and for making native apps.
-* [`egui-wgpu`](https://github.com/emilk/egui/tree/master/egui-wgpu) for [wgpu](https://crates.io/crates/wgpu) (WebGPU API).
-* [`egui-winit`](https://github.com/emilk/egui/tree/master/egui-winit) for integrating with [winit](https://github.com/rust-windowing/winit).
+* [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) for compiling the same app to web/wasm and desktop/native. Uses `egui_glow` and `egui-winit`.
+* [`egui_glium`](https://github.com/emilk/egui/tree/master/crates/egui_glium) for compiling native apps with [Glium](https://github.com/glium/glium).
+* [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/egui_glow) for rendering egui with [glow](https://github.com/grovesNL/glow) on native and web, and for making native apps.
+* [`egui-wgpu`](https://github.com/emilk/egui/tree/master/crates/egui-wgpu) for [wgpu](https://crates.io/crates/wgpu) (WebGPU API).
+* [`egui-winit`](https://github.com/emilk/egui/tree/master/crates/egui-winit) for integrating with [winit](https://github.com/rust-windowing/winit).
 
 ### 第三方集成
 
@@ -182,17 +182,23 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 * [`amethyst_egui`](https://github.com/jgraef/amethyst_egui) for [the Amethyst game engine](https://amethyst.rs/).
 * [`bevy_egui`](https://github.com/mvlabat/bevy_egui) for [the Bevy game engine](https://bevyengine.org/).
 * [`egui_glfw_gl`](https://github.com/cohaereo/egui_glfw_gl) for [GLFW](https://crates.io/crates/glfw).
+* [`egui-glutin-gl`](https://github.com/h3r2tic/egui-glutin-gl/) for [glutin](https://crates.io/crates/glutin).
 * [`egui_sdl2_gl`](https://crates.io/crates/egui_sdl2_gl) for [SDL2](https://crates.io/crates/sdl2).
+* [`egui_sdl2_platform`](https://github.com/ComLarsic/egui_sdl2_platform) for [SDL2](https://crates.io/crates/sdl2).
 * [`egui_vulkano`](https://github.com/derivator/egui_vulkano) for [Vulkano](https://github.com/vulkano-rs/vulkano).
 * [`egui_winit_vulkano`](https://github.com/hakolao/egui_winit_vulkano) for [Vulkano](https://github.com/vulkano-rs/vulkano).
 * [`egui-macroquad`](https://github.com/optozorax/egui-macroquad) for [macroquad](https://github.com/not-fl3/macroquad).
 * [`egui-miniquad`](https://github.com/not-fl3/egui-miniquad) for [Miniquad](https://github.com/not-fl3/miniquad).
+* [`egui_speedy2d`](https://github.com/heretik31/egui_speedy2d) for [Speedy2d](https://github.com/QuantumBadger/Speedy2D).
 * [`egui-tetra`](https://crates.io/crates/egui-tetra) for [Tetra](https://crates.io/crates/tetra), a 2D game framework.
 * [`egui-winit-ash-integration`](https://github.com/MatchaChoco010/egui-winit-ash-integration) for [winit](https://github.com/rust-windowing/winit) and [ash](https://github.com/MaikKlein/ash).
 * [`fltk-egui`](https://crates.io/crates/fltk-egui) for [fltk-rs](https://github.com/fltk-rs/fltk-rs).
 * [`ggez-egui`](https://github.com/NemuiSen/ggez-egui) for the [ggez](https://ggez.rs/) game framework.
 * [`godot-egui`](https://github.com/setzer22/godot-egui) for [godot-rust](https://github.com/godot-rust/godot-rust).
-* [`nannou_egui`](https://github.com/AlexEne/nannou_egui) for [nannou](https://nannou.cc).
+* [`nannou_egui`](https://github.com/nannou-org/nannou/tree/master/nannou_egui) for [nannou](https://nannou.cc).
+* [`notan_egui`](https://github.com/Nazariglez/notan/tree/main/crates/notan_egui) for [notan](https://github.com/Nazariglez/notan).
+* [`screen-13-egui`](https://github.com/attackgoat/screen-13/tree/master/contrib/screen-13-egui) for [Screen 13](https://github.com/attackgoat/screen-13).
+* [`egui_skia`](https://github.com/lucasmerlin/egui_skia) for [skia](https://github.com/rust-skia/rust-skia/tree/master/skia-safe).
 * [`smithay-egui`](https://github.com/Smithay/smithay-egui) for [smithay](https://github.com/Smithay/smithay/).
 
 没有你想要的集成？创建一个很容易！
@@ -224,7 +230,7 @@ loop {
 }
 ```
 
-关于 OpenGl 后端请参考 [the `egui_glium` painter](https://github.com/emilk/egui/blob/master/egui_glium/src/painter.rs) 或 [the `egui_glow` painter](https://github.com/emilk/egui/blob/master/egui_glow/src/painter.rs).
+关于 OpenGl 后端请参考 [the `egui_glium` painter](https://github.com/emilk/egui/blob/master/crates/egui_glium/src/painter.rs) 或 [the `egui_glow` painter](https://github.com/emilk/egui/blob/master/egui_glow/src/painter.rs).
 
 ### 调试你的集成
 
@@ -325,12 +331,12 @@ Also see [GitHub Discussions](https://github.com/emilk/egui/discussions/categori
 * [`eventuals::Eventual`](https://docs.rs/eventuals/latest/eventuals/struct.Eventual.html)
 * [`tokio::sync::watch::channel`](https://docs.rs/tokio/latest/tokio/sync/watch/fn.channel.html)
 
-### 可访问性如何？比如屏幕阅读器？
-屏幕阅读器有实验性的支持。你可以在 [the web demo](https://www.egui.rs/#demo) 的 `Backend` 选项卡中打开它。
+### 无障碍功能？比如屏幕阅读器？
+egui包含了可选的[AccessKit](https://accesskit.dev/)支持，它当前在Windows和macOS上实现了原生的可访问性API。这个特性在dframe中默认启用。对于AccessKit尚未支持的平台，如Web，你可以用实验性的内置屏幕阅读器；在[the web demo](https://www.egui.rs/#demo)中你可以在“Backend”选项卡打开它。
 
-了解更多 <https://github.com/emilk/egui/issues/167>.
+egui最开始关于无障碍的讨论在<https://github.com/emilk/egui/issues/167>。现在，AccessKit支持已合并，为未来的无障碍功能工作提供了强大的基础，请就特定的无障碍问题打开新的issue。
 
-### [egui](https://docs.rs/egui) 和 [eframe](https://github.com/emilk/egui/tree/master/eframe) 的区别是什么？
+### [egui](https://docs.rs/egui) 和 [eframe](https://docs.rs/egui) 和 [eframe](https://github.com/emilk/egui/tree/master/crates/eframe) 的区别是什么？
 
 `egui` 是一个有布局和交互功能的 2D 用户界面库。
 `egui` 无法知道它的运行环境，也不知道如何获取输入/输出到显示器。
@@ -350,14 +356,14 @@ Examples:
 * <https://github.com/emilk/egui/blob/master/examples/custom_3d_three-d.rs>
 * <https://github.com/emilk/egui/blob/master/examples/custom_3d_glow.rs>
 
-`Shape::Callback` will call your code when egui gets painted, to show anything using whatever the background rendering context is. When using [`eframe`](https://github.com/emilk/egui/tree/master/eframe) this will be [`glow`](https://github.com/grovesNL/glow). Other integrations will give you other rendering contexts, if they support `Shape::Callback` at all.
+`Shape::Callback` will call your code when egui gets painted, to show anything using whatever the background rendering context is. When using [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) this will be [`glow`](https://github.com/grovesNL/glow). Other integrations will give you other rendering contexts, if they support `Shape::Callback` at all.
 
 #### Render-to-texture
 You can also render your 3D scene to a texture and display it using [`ui.image(…)`](https://docs.rs/egui/latest/egui/struct.Ui.html#method.image). You first need to convert the native texture to an [`egui::TextureId`](https://docs.rs/egui/latest/egui/enum.TextureId.html), and how to do this depends on the integration you use.
 
 Examples:
 * Using [`egui-miniquad`]( https://github.com/not-fl3/egui-miniquad): https://github.com/not-fl3/egui-miniquad/blob/master/examples/render_to_egui_image.rs
-* Using [`egui_glium`](https://github.com/emilk/egui/tree/master/egui_glium): <https://github.com/emilk/egui/blob/master/egui_glium/examples/native_texture.rs>.
+* Using [`egui_glium`](https://github.com/emilk/egui/tree/master/crates/egui_glium): <https://github.com/emilk/egui/blob/master/crates/egui_glium/examples/native_texture.rs>
 
 
 ## 其他
@@ -411,3 +417,12 @@ Default fonts:
 * `Hack-Regular.ttf`: <https://github.com/source-foundry/Hack>, [MIT Licence](https://github.com/source-foundry/Hack/blob/master/LICENSE.md)
 * `NotoEmoji-Regular.ttf`: [google.com/get/noto](https://google.com/get/noto), [SIL Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
 * `Ubuntu-Light.ttf` by [Dalton Maag](http://www.daltonmaag.com/): [Ubuntu font licence](https://ubuntu.com/legal/font-licence)
+
+---
+
+<div align="center">
+<img src="media/rerun_io_logo.png" width="50%">
+
+egui development is sponsored by [Rerun](https://www.rerun.io/), a startup doing<br>
+visualizations for computer vision and robotics.
+</div>
