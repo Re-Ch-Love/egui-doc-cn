@@ -257,9 +257,9 @@ loop {
 
 ## 为什么使用即时模式
 
-`egui` 是一个 [即时模式 GUI 库](https://en.wikipedia.org/wiki/Immediate_mode_GUI)，而不是*保留模式* GUI 库。 关于它们的区别，最好的例子就是按钮：In a retained GUI you create a button, add it to some UI and install some on-click handler (callback). The button is retained in the UI, and to change the text on it you need to store some sort of reference to it. By contrast, in immediate mode you show the button and interact with it immediately, and you do so every frame (e.g. 60 times per second). This means there is no need for any on-click handler, nor to store any reference to it. In `egui` this looks like this: `if ui.button("Save file").clicked() { save(file); }`.
+`egui` 是一个 [即时模式 GUI 库](https://en.wikipedia.org/wiki/Immediate_mode_GUI)，而不是*保留模式* GUI 库。 关于它们的区别，最好的例子就是按钮：在一个保留 GUI 中，如果你创建了一个按钮，把它添加入 UI 中，并配套点击处理程序（调用）。这个按钮会被保留在用户界面中，为改变某些界面刷新，需要存储对其调用。而相对之下，在即时模式中，这个按钮会立即显示并与你进行交互，而这对于每一帧来说都可用（每秒60帧）。这意味你不需要任何 on-click 处理程序，也不需要存储对它的任何调用。 在 `egui` 中按钮是这样表示的 `if ui.button("Save file").clicked() { save(file); }`.
 
-*译者注：很抱歉，这里实在是不知道该怎么翻译，总觉得很奇怪。关于即时模式和保留模式的区别可以看看 [这篇](https://docs.microsoft.com/zh-cn/windows/win32/learnwin32/retained-mode-versus-immediate-mode)。*
+*关于即时模式和保留模式的区别可以看看 [这篇](https://docs.microsoft.com/zh-cn/windows/win32/learnwin32/retained-mode-versus-immediate-mode)。*
 
 有关即时模式的更详细描述，请参见 [in the `egui` docs](https://docs.rs/egui/latest/egui/#understanding-immediate-mode).
 
