@@ -234,25 +234,25 @@ loop {
 
 ### 调试你的集成
 
-#### Things look jagged
+#### 界面无法对齐
 
-* Turn off backface culling.
+* 关闭背景剔除.
 
 #### 文字看起来很模糊
 
-* Make sure you set the proper `pixels_per_point` in the input to egui.
-* Make sure the texture sampler is not off by half a pixel. Try nearest-neighbor sampler to check.
+* 请确保你设置了适当的 `pixels_per_point` 在 egui 的参数中.
+* 确保纹理取样器没有偏离半个像素. 试着使用近邻取样器进行检查.
 
 #### 窗口太透明或太暗
 
-* egui uses premultiplied alpha, so make sure your blending function is `(ONE, ONE_MINUS_SRC_ALPHA)`.
-* Make sure your texture sampler is clamped (`GL_CLAMP_TO_EDGE`).
-* egui prefers linear color spaces for all blending so:
-  * Use an sRGBA-aware texture if available (e.g. `GL_SRGB8_ALPHA8`).
-    * Otherwise: remember to decode gamma in the fragment shader.
-  * Decode the gamma of the incoming vertex colors in your vertex shader.
-  * Turn on sRGBA/linear framebuffer if available (`GL_FRAMEBUFFER_SRGB`).
-    * Otherwise: gamma-encode the colors before you write them again.
+* egui 使用预乘 alpha, 所以需要确保你的混合函数功能是 `(ONE, ONE_MINUS_SRC_ALPHA)`.
+* 确保你的纹理取样器使用 (`GL_CLAMP_TO_EDGE`).
+* egui 更倾向于使用线性色彩空间进行混合，所以:
+  * 如果可以的话，请使用sRGBA感知纹理 (e.g. `GL_SRGB8_ALPHA8`).
+    * 否则：请在片段着色器中使用伽玛解码。
+  * 在顶点着色器中对传入的顶点颜色使用伽玛进行解码。
+  * 如果可以，打开 sRGBA或线性帧缓冲器 (`GL_FRAMEBUFFER_SRGB`).
+    * 否则：在再次写入颜色之前对其使用伽马编码。
 
 
 ## 为什么使用即时模式
@@ -268,45 +268,45 @@ loop {
 简单来说，即时模式 GUI 更容易用，但没那么强大。
 
 ### 即时模式的优点
-#### Usability
-The main advantage of immediate mode is that the application code becomes vastly simpler:
+#### 可用性
+即时模式的主要优点是，使得应用程序的代码更为简单。
 
-* You never need to have any on-click handlers and callbacks that disrupts your code flow.
-* You don't have to worry about a lingering callback calling something that is gone.
-* Your GUI code can easily live in a simple function (no need for an object just for the UI).
-* You don't have to worry about app state and GUI state being out-of-sync (i.e. the GUI showing something outdated), because the GUI isn't storing any state - it is showing the latest state *immediately*.
+* 不需要有任何点击处理程序和回调操作，以免耽误你的开发流程。
+* 不用担心一个不知所以然的回调调用已经删除的东西。
+* GUI代码可以很容易地存在于一个简单的函数中 (无需为用户界面设置对象)。
+* 不用担心应用程序状态和 GUI 状态同步问题 ( GUI 显示延迟), 因为 EGUI 不存储任何状态--即时模式。
 
-In other words, a whole lot of code, complexity and bugs are gone, and you can focus your time on something more interesting than writing GUI code.
+换言之，减少大量代码、复杂性和错误，你能把时间放在比写 GUI 代码更有趣的事情上。
 
 ### 即时模式的缺点
 
-#### Layout
-The main disadvantage of immediate mode is it makes layout more difficult. Say you want to show a small dialog window in the center of the screen. To position the window correctly the GUI library must first know the size of it. To know the size of the window the GUI library must first layout the contents of the window. In retained mode this is easy: the GUI library does the window layout, positions the window, then checks for interaction ("was the OK button clicked?").
+#### Layout布局
+即时模式的主要缺点是布局更加困难。假设你在屏幕中央显示一个小的对话窗口。为了正确定位该窗口，GUI库必须首先知道它的尺寸。为了知道窗口的大小，GUI库必须首先布局窗口的内容。在保留模式下，实现比较容易：GUI库进行窗口布局，定位窗口，然后检查交互情况 (按钮是否进行点击)。
 
-In immediate mode you run into a paradox: to know the size of the window, we must do the layout, but the layout code also checks for interaction ("was the OK button clicked?") and so it needs to know the window position *before* showing the window contents. This means we must decide where to show the window *before* we know its size!
+即时模式下，你会遇到一个悖论：为了知道窗口的大小，我们必须进行布局，但布局代码也会检查交互（按钮是否进行点击），因此在显示窗口内容之前，需要先知道窗口的位置。这意味必须在知道窗口的大小之前就决定在哪里显示窗口。
 
-This is a fundamental shortcoming of immediate mode GUIs, and any attempt to resolve it comes with its own downsides.
+这是即时GUI的一个基本缺陷，任何试图解决这个问题的努力都会带来自身的弊端。
 
-One workaround is to store the size and use it the next frame. This produces a frame-delay for the correct layout, producing occasional flickering the first frame something shows up. `egui` does this for some things such as windows and grid layouts.
+一种解决方法是提前存储界面尺寸并在下一帧使用。这就产生了一个帧延迟，第一帧就会偶尔出现闪烁。 `egui` 对于如窗口和网格布局，都是如此。
 
-You can also call the layout code twice (once to get the size, once to do the interaction), but that is not only more expensive, it's also complex to implement, and in some cases twice is not enough. `egui` never does this.
+也可以调用两次布局代码（一次获取尺寸，第二次进行下一次交互），但是成本更高，而且实现起来也更复杂，何况某些情况下两次不够。 `egui` 不会这样做。
 
-For "atomic" widgets (e.g. a button) `egui` knows the size before showing it, so centering buttons, labels etc is possible in `egui` without any special workarounds.
+对于"atomic" widgets部件 (例如一个 button) `egui` 在显示之前就知道尺寸，所以`egui`中可以将按钮、标签等放在中间，而不需要任何特殊的操作。
 
 #### CPU usage
-Since an immediate mode GUI does a full layout each frame, the layout code needs to be quick. If you have a very complex GUI this can tax the CPU. In particular, having a very large UI in a scroll area (with very long scrollback) can be slow, as the content needs to be layed out each frame.
+由于即时模式的 GUI 每帧都做了完整的布局，布局代码需要快速响应。如果你有一个非常复杂的 GUI ，这可能会对 CPU 造成负担。特别在滚动区域有一个非常大的用户界面（很长的滚动页面）将会变得很慢，因为需要将每一帧都渲染出来。
 
-If you design the GUI with this in mind and refrain from huge scroll areas (or only lay out the part that is in view) then the performance hit is generally pretty small. For most cases you can expect `egui` to take up 1-2 ms per frame, but `egui` still has a lot of room for optimization (it's not something I've focused on yet). You can also set up `egui` to only repaint when there is interaction (e.g. mouse movement).
+如果在设计 GUI 时考虑到了这一点，为避免使用巨大的滚动区域（或是只布置在视图中显示的部分），那么对性能影响是相当小的。在大多数情况下，你可以期望`egui`每帧占用1-2ms，但`egui`仍有很大的优化空间。也可以将`egui`设置为只在有交互时（如鼠标移动时）才进行重绘。
 
-If your GUI is highly interactive, then immediate mode may actually be more performant compared to retained mode. Go to any web page and resize the browser window, and you'll notice that the browser is very slow to do the layout and eats a lot of CPU doing it. Resize a window in `egui` by contrast, and you'll get smooth 60 FPS at no extra CPU cost.
+如果你的 GUI 是高度交互的，那么与保留模式相比，即时模式可能性能更好。进入任何网页并调整浏览器窗口的大小时候，你会注意浏览器布局非常慢，同时消耗大量 CPU 。相比之下，在 "egui "中调整一个窗口的大小，仍能保持 60FPS 帧率，且没有额外的CPU成本。
 
 
 #### IDs
-There are some GUI state that you want the GUI library to retain, even in an immediate mode library such as `egui`. This includes position and sizes of windows and how far the user has scrolled in some UI. In these cases you need to provide `egui` with a seed of a unique identifier (unique within the parent UI). For instance: by default `egui` uses the window titles as unique IDs to store window positions. If you want two windows with the same name (or one window with a dynamic name) you must provide some other ID source to `egui` (some unique integer or string).
+在一些 GUI 状态中，如果希望 GUI 库保留，或是在一个即时模式库如`egui`中。那么就需要知道窗口的位置和大小，以及在某些界面中滚动了多远。这种情况下，需要为`egui`提供唯一标识符的种子（在主 UI 中是唯一的）。例如在默认情况下，`egui`使用窗口标题作为唯一的 IDs 来存储窗口位置。如果你想要两个具有相同名称的窗口（或一个具有动态名称的窗口），你必须向`egui`提供其他的 IDs 来源（由独特的整数或字符串构成）。
 
-`egui` also needs to track which widget is being interacted with (e.g. which slider is being dragged). `egui` uses unique id:s for this awell, but in this case the IDs are automatically generated, so there is no need for the user to worry about it. In particular, having two buttons with the same name is no problem (this is in contrast with [`Dear ImGui`](https://github.com/ocornut/imgui)).
+`egui`需要跟踪哪个部件被交互（例如哪个滑块被拖动）。`egui`也使用唯一的 IDs，但在上述情况下，IDs 是自动生成的，所以不需担心这个问题。对于两个名字相同的按钮也没有问题（拓展 [`Dear ImGui`](https://github.com/ocornut/imgui)).
 
-Overall, ID handling is a rare inconvenience, and not a big disadvantage.
+总的来说，IDs 处理有些不方便，但并不是一个大的缺点。
 
 
 ## FAQ
@@ -347,9 +347,9 @@ egui最开始关于无障碍的讨论在<https://github.com/emilk/egui/issues/16
 `eframe` 中的 _frame_ 既代表 egui app 中的 帧（frame），又代表框架（framework）（`frame` 是个框架, `egui` 是个库）。
 
 ### 我该如何在 egui 中渲染 3D 内容？
-There are multiple ways to combine egui with 3D. The simplest way is to use a 3D library and have egui sit on top of the 3D view. See for instance [`bevy_egui`](https://github.com/mvlabat/bevy_egui) or [`three-d`](https://github.com/asny/three-d).
+有多种方法可以将 egui 与 3D 相结合。最简单的方法是使用一个3D库，让EGUI 位于 3D 视图的顶部。例如 [`bevy_egui`](https://github.com/mvlabat/bevy_egui) or [`three-d`](https://github.com/asny/three-d).
 
-If you want to embed 3D into an egui view there are two options.
+如果想将 3D 嵌入到 egui 视图中，有两种选择。
 
 #### `Shape::Callback`
 Examples:
