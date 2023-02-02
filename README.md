@@ -9,3 +9,6 @@
 ## 注意
 
 *此仓库中的文档尽可能与官方英文文档同步，但不能保证即时更新，查看时请注意是否过时，目前的版本为 [commit 80ea128](https://github.com/emilk/egui/commit/80ea12877ead72eca8ff63af46229a5ac7396de6)*
+
+## 特别鸣谢
+- [AuroraMaster](https://github.com/AuroraMaster) 贡献了部分翻译
