@@ -11,11 +11,11 @@
 
 👉 [点此运行 Web 样例](https://www.egui.rs/#demo) 👈
 
-egui （读作“e-gooey”） 是一个简单、快速、高度可移植的 Rust 即时模式 GUI 库。egui 可运行于 Web, 原生（*Native*） 甚至 [你喜欢的的游戏引擎](#integrations) （或者很快）。
+egui （读作“e-gooey”） 是一个简单、快速、可移植性强的 Rust 即时模式 GUI 库。egui 可运行于 Web, 原生（*Native*） 甚至 [你喜欢的的游戏引擎](#integrations) （很快到来）。
 
 egui 旨在成为最易用的 Rust GUI 库，用最简单的方式创建Web应用程序。
 
-egui 可以在任何可以绘制纹理三角形（textured triangles）的地方使用，这意味着你可以轻松地地将它集成到你选择的游戏引擎中。
+egui 可以在任何可以绘制纹理三角形（*textured triangles*）的地方使用，这意味着你可以轻松地地将它集成到你选择的游戏引擎中。
 
 章节:
 
@@ -31,7 +31,7 @@ egui 可以在任何可以绘制纹理三角形（textured triangles）的地方
 * [其他](#其他)
 * [鸣谢](#鸣谢)
 
-([egui 的中文翻译文档 / chinese translation](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README_zh-hans.md))
+（[egui原始项目地址](https://github.com/emilk/egui)）
 
 ## 示例
 
@@ -45,7 +45,7 @@ ui.add(egui::Slider::new(&mut age, 0..=120).text("age"));
 if ui.button("Click each year").clicked() {
     age += 1;
 }
-ui.label(format!("Hello '{}', age {}", name, age));
+ui.label(format!("Hello '{name}', age {age}"));
 ```
 
 <img src="media/demo.gif">
@@ -56,11 +56,11 @@ ui.label(format!("Hello '{}', age {}", name, age));
 
 官方文档位于 <https://docs.rs/egui>。要获得更多灵感或示例，请查看 [egui web 样例](https://www.egui.rs/#demo) 并按照其中的链接访问源代码。
 
-如果你想要将egui集成到现有的引擎中，请前往  [集成](#集成) 一节。
+如果你想要将egui集成到现有的引擎中，请前往 [集成](#集成) 一节。
 
-如果有疑问，请访问 [GitHub Discussions](https://github.com/emilk/egui/discussions) 或 [egui discord 服务器](https://discord.gg/JFcEma9bJq)。
+如果有疑问，请访问 [GitHub Discussions](https://github.com/emilk/egui/discussions) 或 [egui 的 discord 服务器](https://discord.gg/JFcEma9bJq)。
 
-如果你想贡献给 egui，请阅读 [Contributing Guidelines](https://github.com/emilk/egui/blob/master/CONTRIBUTING.md).
+如果你想为egui做贡献，请阅读 [Contributing Guidelines](https://github.com/emilk/egui/blob/master/CONTRIBUTING.md).
 
 ## 样例
 
@@ -70,34 +70,34 @@ ui.label(format!("Hello '{}', age {}", name, age));
 
 原生后端是 [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/egui_glow)（使用 [`glow`](https://crates.io/crates/glow))，在 Windows 和 Mac 上开箱即用，但如果要在 Linux 上使用，需要先运行：
 
-`sudo apt-get install -y libclang-dev libgtk-3-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libspeechd-dev libxkbcommon-dev libssl-dev`
+`sudo apt-get install -y libclang-dev libgtk-3-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libssl-dev`
 
 在 Fedora Rawhide 上需要运行:
 
-`dnf install clang clang-devel clang-tools-extra speech-dispatcher-devel libxkbcommon-devel pkg-config openssl-devel libxcb-devel`
+`dnf install clang clang-devel clang-tools-extra libxkbcommon-devel pkg-config openssl-devel libxcb-devel gtk3-devel atk fontconfig-devel`
 
-**注意**: 这只针对样例 App —— egui 本身是完全平台无关的
+**注意**: 这只针对样例 App —— egui 本身是完全跨平台的！
 
 ## 目标
 
 * 最易用的 GUI 库
-* 反应敏捷的：在 debug build 中达到 60 Hz
-* 友好的: 难以犯错，不应该发生 panic
-* 可移植的：同样的代码可以在不同平台上使用
+* 灵敏：在 debug build 中达到 60 Hz
+* 友好：难以发生编码错误，不应该发生 panic
+* 可移植：同样的代码可以跨平台使用
 * 轻松集成到任意环境中
 * 用于自定义绘制的简单 2D 图形 API（[`epaint`](https://docs.rs/epaint)）.
 * 没有回调
 * 纯即时模式
-* 可扩展的：[轻松为 egui 编写自己的 widgets](https://github.com/emilk/egui/blob/master/crates/egui_demo_lib/src/demo/toggle_switch.rs)
-* 模块化的：你应该可以使用 egui 中的一小部分，并用新的方式将它们组合起来
-* 安全的：egui 中没有`unsafe`关键字
-* 依赖最小化：[`ab_glyph`](https://crates.io/crates/ab_glyph) [`ahash`](https://crates.io/crates/ahash) [`nohash-hasher`](https://crates.io/crates/nohash-hasher) [`parking_lot`](https://crates.io/crates/parking_lot)
+* 可扩展：[轻松为 egui 编写自己的 widgets](https://github.com/emilk/egui/blob/master/crates/egui_demo_lib/src/demo/toggle_switch.rs)
+* 模块化：你可以使用 egui 中的一小部分，并用新的方式将它们组合起来
+* 内存安全：egui 中没有`unsafe`关键字
+* 最小化依赖：[`ab_glyph`](https://crates.io/crates/ab_glyph) [`ahash`](https://crates.io/crates/ahash) [`nohash-hasher`](https://crates.io/crates/nohash-hasher) [`parking_lot`](https://crates.io/crates/parking_lot)
 
 egui *不是*框架。egui 是供调用的库，而不是供编程的环境。
 
 **注意**: egui 还没有实现所有上述目标！egui 仍在开发中。
 
-### 非目标
+### 以下并非egui的目标
 
 * 成为最强大的 GUI 库
 * 原生外观界面（*looking interface*）
@@ -107,7 +107,7 @@ egui *不是*框架。egui 是供调用的库，而不是供编程的环境。
 
 egui 旨在成为想要以最简单的方式创建 GUI 或想要在游戏引擎中添加 GUI 的人的最佳选择。
 
-如果你不用 Rust，egui 不适合你。如果你想要一个看起来原生的 GUI，egui 不适合你。如果你想要升级时不会损坏的东西（*something that doesn't break when you upgrade it*），egui 不适合你（暂时）。
+如果你不用 Rust，egui 不适合你。如果你想要一个看起来原生的 GUI，egui 不适合你。如果你想要升级时不会破坏已有项目，egui 暂时不适合你。
 
 但如果你想用 Rust 写一些交互式的东西，需要一个简单的 GUI，egui 可能会适合你。
 
@@ -137,14 +137,14 @@ egui 在活跃开发中。它做的不错，但缺少许多特性，接口仍在
 
 ### 特性
 
-* Widgets: label, text button, hyperlink, checkbox, radio button, slider, draggable value, text editing, combo box, color picker
-* Layouts: horizontal, vertical, columns, automatic wrapping
-* Text editing: multiline, copy/paste, undo, emoji supports
-* Windows: move, resize, name, minimize and close. Automatically sized and positioned.
-* Regions: resizing, vertical scrolling, collapsing headers (sections)
-* Rendering: Anti-aliased rendering of lines, circles, text and convex polygons.
-* Tooltips on hover
-* More
+* 组件：label, text button, hyperlink, checkbox, radio button, slider, draggable value, text editing, combo box, color picker
+* 布局：horizontal, vertical, columns, automatic wrapping
+* 文本编辑: multiline, copy/paste, undo, emoji supports
+* 窗口：move, resize, name, minimize and close. 自动调整大小和定位。
+* 区域：resizing, vertical scrolling, collapsing headers (sections)
+* 渲染：Anti-aliased rendering of lines, circles, text and convex polygons.
+* 悬浮工具提示
+* 更多
 
 <img src="media/widget_gallery.gif" width="50%">
 
@@ -163,43 +163,43 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 * 运行应用程序代码
 * **输出**: 处理 egui 输出 （光标变化、粘贴、纹理分配（*texture allocations*）……）
 
-* **绘制**：渲染 egui 生成的三角形网格（参考 [OpenGL example](https://github.com/emilk/egui/blob/master/crates/egui_glium/src/painter.rs)）
+* **绘制**：渲染 egui 生成的三角形网格（参考 [OpenGL example](https://github.com/emilk/egui/blob/master/crates/egui_glow/src/painter.rs)）
 
 ### 官方集成
 
 以下是 egui 官方集成：
 
-* [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) for compiling the same app to web/wasm and desktop/native. Uses `egui_glow` and `egui-winit`.
-* [`egui_glium`](https://github.com/emilk/egui/tree/master/crates/egui_glium) for compiling native apps with [Glium](https://github.com/glium/glium).
-* [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/egui_glow) for rendering egui with [glow](https://github.com/grovesNL/glow) on native and web, and for making native apps.
-* [`egui-wgpu`](https://github.com/emilk/egui/tree/master/crates/egui-wgpu) for [wgpu](https://crates.io/crates/wgpu) (WebGPU API).
-* [`egui-winit`](https://github.com/emilk/egui/tree/master/crates/egui-winit) for integrating with [winit](https://github.com/rust-windowing/winit).
+* [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) 用于将相同的App编译为 web/wasm 喝 desktop/native。使用 `egui-winit` 和 `egui_glow` 或 `egui-wgpu`.
+用于在本地和web上渲染带有glow的egui，以及制作本地应用程序。
+* [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/egui_glow) 用于在原生平台和 Web 上渲染带有 [glow](https://github.com/grovesNL/glow) 的 egui，以及制作原生App。
+* [`egui-wgpu`](https://github.com/emilk/egui/tree/master/crates/egui-wgpu) 用于 [wgpu](https://crates.io/crates/wgpu) （WebGPU API）.
+* [`egui-winit`](https://github.com/emilk/egui/tree/master/crates/egui-winit) 用于集成于 [winit](https://github.com/rust-windowing/winit).
+* [`egui_glium`](https://github.com/emilk/egui/tree/master/crates/egui_glium) 用于渲染带有 [Glium](https://github.com/glium/glium) 的原生App。(**已弃用** —— 正在寻找新的维护者).
 
 ### 第三方集成
 
-*译者注：个人认为仓库列表不应该翻译。*
-
-* [`amethyst_egui`](https://github.com/jgraef/amethyst_egui) for [the Amethyst game engine](https://amethyst.rs/).
-* [`bevy_egui`](https://github.com/mvlabat/bevy_egui) for [the Bevy game engine](https://bevyengine.org/).
-* [`egui_glfw_gl`](https://github.com/cohaereo/egui_glfw_gl) for [GLFW](https://crates.io/crates/glfw).
-* [`egui-glutin-gl`](https://github.com/h3r2tic/egui-glutin-gl/) for [glutin](https://crates.io/crates/glutin).
-* [`egui_sdl2_gl`](https://crates.io/crates/egui_sdl2_gl) for [SDL2](https://crates.io/crates/sdl2).
-* [`egui_sdl2_platform`](https://github.com/ComLarsic/egui_sdl2_platform) for [SDL2](https://crates.io/crates/sdl2).
-* [`egui_vulkano`](https://github.com/derivator/egui_vulkano) for [Vulkano](https://github.com/vulkano-rs/vulkano).
-* [`egui_winit_vulkano`](https://github.com/hakolao/egui_winit_vulkano) for [Vulkano](https://github.com/vulkano-rs/vulkano).
-* [`egui-macroquad`](https://github.com/optozorax/egui-macroquad) for [macroquad](https://github.com/not-fl3/macroquad).
-* [`egui-miniquad`](https://github.com/not-fl3/egui-miniquad) for [Miniquad](https://github.com/not-fl3/miniquad).
-* [`egui_speedy2d`](https://github.com/heretik31/egui_speedy2d) for [Speedy2d](https://github.com/QuantumBadger/Speedy2D).
-* [`egui-tetra`](https://crates.io/crates/egui-tetra) for [Tetra](https://crates.io/crates/tetra), a 2D game framework.
-* [`egui-winit-ash-integration`](https://github.com/MatchaChoco010/egui-winit-ash-integration) for [winit](https://github.com/rust-windowing/winit) and [ash](https://github.com/MaikKlein/ash).
-* [`fltk-egui`](https://crates.io/crates/fltk-egui) for [fltk-rs](https://github.com/fltk-rs/fltk-rs).
-* [`ggez-egui`](https://github.com/NemuiSen/ggez-egui) for the [ggez](https://ggez.rs/) game framework.
-* [`godot-egui`](https://github.com/setzer22/godot-egui) for [godot-rust](https://github.com/godot-rust/godot-rust).
-* [`nannou_egui`](https://github.com/nannou-org/nannou/tree/master/nannou_egui) for [nannou](https://nannou.cc).
-* [`notan_egui`](https://github.com/Nazariglez/notan/tree/main/crates/notan_egui) for [notan](https://github.com/Nazariglez/notan).
-* [`screen-13-egui`](https://github.com/attackgoat/screen-13/tree/master/contrib/screen-13-egui) for [Screen 13](https://github.com/attackgoat/screen-13).
-* [`egui_skia`](https://github.com/lucasmerlin/egui_skia) for [skia](https://github.com/rust-skia/rust-skia/tree/master/skia-safe).
-* [`smithay-egui`](https://github.com/Smithay/smithay-egui) for [smithay](https://github.com/Smithay/smithay/).
+* [`amethyst_egui`](https://github.com/jgraef/amethyst_egui) 用于 [the Amethyst game engine](https://amethyst.rs/).
+* [`bevy_egui`](https://github.com/mvlabat/bevy_egui) 用于 [the Bevy game engine](https://bevyengine.org/).
+* [`egui_glfw_gl`](https://github.com/cohaereo/egui_glfw_gl) 用于 [GLFW](https://crates.io/crates/glfw).
+* [`egui-glutin-gl`](https://github.com/h3r2tic/egui-glutin-gl/) 用于 [glutin](https://crates.io/crates/glutin).
+* [`egui_sdl2_gl`](https://crates.io/crates/egui_sdl2_gl) 用于 [SDL2](https://crates.io/crates/sdl2).
+* [`egui_sdl2_plat用于m`](https://github.com/ComLarsic/egui_sdl2_plat用于m) 用于 [SDL2](https://crates.io/crates/sdl2).
+* [`egui_vulkano`](https://github.com/derivator/egui_vulkano) 用于 [Vulkano](https://github.com/vulkano-rs/vulkano).
+* [`egui_winit_vulkano`](https://github.com/hakolao/egui_winit_vulkano) 用于 [Vulkano](https://github.com/vulkano-rs/vulkano).
+* [`egui-macroquad`](https://github.com/optozorax/egui-macroquad) 用于 [macroquad](https://github.com/not-fl3/macroquad).
+* [`egui-miniquad`](https://github.com/not-fl3/egui-miniquad) 用于 [Miniquad](https://github.com/not-fl3/miniquad).
+* [`egui_speedy2d`](https://github.com/heretik31/egui_speedy2d) 用于 [Speedy2d](https://github.com/QuantumBadger/Speedy2D).
+* [`egui-tetra`](https://crates.io/crates/egui-tetra) 用于 [Tetra](https://crates.io/crates/tetra), a 2D game framework.
+* [`egui-winit-ash-integration`](https://github.com/MatchaChoco010/egui-winit-ash-integration) 用于 [winit](https://github.com/rust-windowing/winit) and [ash](https://github.com/MaikKlein/ash).
+* [`fltk-egui`](https://crates.io/crates/fltk-egui) 用于 [fltk-rs](https://github.com/fltk-rs/fltk-rs).
+* [`ggegui`](https://github.com/NemuiSen/ggegui) 用于 the [ggez](https://ggez.rs/) game framework.
+* [`godot-egui`](https://github.com/setzer22/godot-egui) 用于 [godot-rust](https://github.com/godot-rust/godot-rust).
+* [`nannou_egui`](https://github.com/nannou-org/nannou/tree/master/nannou_egui) 用于 [nannou](https://nannou.cc).
+* [`notan_egui`](https://github.com/Nazariglez/notan/tree/main/crates/notan_egui) 用于 [notan](https://github.com/Nazariglez/notan).
+* [`screen-13-egui`](https://github.com/attackgoat/screen-13/tree/master/contrib/screen-13-egui) 用于 [Screen 13](https://github.com/attackgoat/screen-13).
+* [`egui_skia`](https://github.com/lucasmerlin/egui_skia) 用于 [skia](https://github.com/rust-skia/rust-skia/tree/master/skia-safe).
+* [`smithay-egui`](https://github.com/Smithay/smithay-egui) 用于 [smithay](https://github.com/Smithay/smithay/).
+* [`tauri-egui`](https://github.com/tauri-apps/tauri-egui) 用于 [tauri](https://github.com/tauri-apps/tauri).
 
 没有你想要的集成？创建一个很容易！
 
@@ -234,9 +234,9 @@ loop {
 
 ### 调试你的集成
 
-#### Things look jagged
+#### 东西看起来参差不齐
 
-* Turn off backface culling.
+* 关闭 backface culling.
 
 #### 文字看起来很模糊
 
@@ -257,9 +257,14 @@ loop {
 
 ## 为什么使用即时模式
 
-`egui` 是一个 [即时模式 GUI 库](https://en.wikipedia.org/wiki/Immediate_mode_GUI)，而不是*保留模式* GUI 库。 关于它们的区别，最好的例子就是按钮：In a retained GUI you create a button, add it to some UI and install some on-click handler (callback). The button is retained in the UI, and to change the text on it you need to store some sort of reference to it. By contrast, in immediate mode you show the button and interact with it immediately, and you do so every frame (e.g. 60 times per second). This means there is no need for any on-click handler, nor to store any reference to it. In `egui` this looks like this: `if ui.button("Save file").clicked() { save(file); }`.
+`egui` 是一个 [即时模式 GUI 库](https://en.wikipedia.org/wiki/Immediate_mode_GUI)，而不是*保留模式* GUI 库。 关于它们的区别，最好的例子就是按钮：在保留的GUI中，您可以创建一个按钮，将其添加到一些UI中，并安装一些点击处理程序（回调）。按钮保留在UI中，要更改其上的文本，您需要存储对它的某种引用。相比之下，在即时模式下，您可以显示按钮并立即与它交互，并且每帧都会这样做（例如每秒60次）。这意味着不需要任何点击处理程序，也不需要存储对它的任何引用。在 `egui` 中它看起来像这样：`if ui.button("Save file").clicked() { save(file); }`.
 
-*译者注：很抱歉，这里实在是不知道该怎么翻译，总觉得很奇怪。关于即时模式和保留模式的区别可以看看 [这篇](https://docs.microsoft.com/zh-cn/windows/win32/learnwin32/retained-mode-versus-immediate-mode)。*
+*译者注：也许是本人翻译水平问题，没能理解作者想表达的意思，感觉这段有些词不达意，故放出原文供参考。关于即使模式和保留模式的区别，也可以参考[微软的这篇文章](https://docs.microsoft.com/zh-cn/windows/win32/learnwin32/retained-mode-versus-immediate-mode)。*
+
+原文：
+```
+The difference between retained mode and immediate mode is best illustrated with the example of a button: In a retained GUI you create a button, add it to some UI and install some on-click handler (callback). The button is retained in the UI, and to change the text on it you need to store some sort of reference to it. By contrast, in immediate mode you show the button and interact with it immediately, and you do so every frame (e.g. 60 times per second). This means there is no need for any on-click handler, nor to store any reference to it. In `egui` this looks like this: `if ui.button("Save file").clicked() { save(file); }`.
+```
 
 有关即时模式的更详细描述，请参见 [in the `egui` docs](https://docs.rs/egui/latest/egui/#understanding-immediate-mode).
 
@@ -294,7 +299,7 @@ You can also call the layout code twice (once to get the size, once to do the in
 For "atomic" widgets (e.g. a button) `egui` knows the size before showing it, so centering buttons, labels etc is possible in `egui` without any special workarounds.
 
 #### CPU usage
-Since an immediate mode GUI does a full layout each frame, the layout code needs to be quick. If you have a very complex GUI this can tax the CPU. In particular, having a very large UI in a scroll area (with very long scrollback) can be slow, as the content needs to be layed out each frame.
+Since an immediate mode GUI does a full layout each frame, the layout code needs to be quick. If you have a very complex GUI this can tax the CPU. In particular, having a very large UI in a scroll area (with very long scrollback) can be slow, as the content needs to be laid out each frame.
 
 If you design the GUI with this in mind and refrain from huge scroll areas (or only lay out the part that is in view) then the performance hit is generally pretty small. For most cases you can expect `egui` to take up 1-2 ms per frame, but `egui` still has a lot of room for optimization (it's not something I've focused on yet). You can also set up `egui` to only repaint when there is interaction (e.g. mouse movement).
 
@@ -353,7 +358,6 @@ If you want to embed 3D into an egui view there are two options.
 
 #### `Shape::Callback`
 Examples:
-* <https://github.com/emilk/egui/blob/master/examples/custom_3d_three-d.rs>
 * <https://github.com/emilk/egui/blob/master/examples/custom_3d_glow.rs>
 
 `Shape::Callback` will call your code when egui gets painted, to show anything using whatever the background rendering context is. When using [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) this will be [`glow`](https://github.com/grovesNL/glow). Other integrations will give you other rendering contexts, if they support `Shape::Callback` at all.
@@ -380,6 +384,8 @@ egui uses the builder pattern for construction widgets. For instance: `ui.add(La
 
 Instead of using matching `begin/end` style function calls (which can be error prone) egui prefers to use `FnOnce` closures passed to a wrapping function. Lambdas are a bit ugly though, so I'd like to find a nicer solution to this. More discussion of this at <https://github.com/emilk/egui/issues/1004#issuecomment-1001650754>.
 
+egui uses a single `RwLock` for short-time locks on each access of `Context` data. This is to leave implementation simple and transactional and allow users to run their UI logic in parallel. Instead of creating mutex guards, egui uses closures passed to a wrapping function, e.g. `ctx.input(|i| i.key_down(Key::A))`. This is to make it less likely that a user would accidentally double-lock the `Context`, which would lead to a deadlock.
+
 ### Inspiration
 
 The one and only [Dear ImGui](https://github.com/ocornut/imgui) is a great Immediate Mode GUI for C++ which works with many backends. That library revolutionized how I think about GUI code and turned GUI programming from something I hated to do to something I now enjoy.
@@ -405,13 +411,15 @@ Notable contributions by:
 * [@mankinskin](https://github.com/mankinskin): [Context menus](https://github.com/emilk/egui/pull/543).
 * [@t18b219k](https://github.com/t18b219k): [Port glow painter to web](https://github.com/emilk/egui/pull/868).
 * [@danielkeller](https://github.com/danielkeller): [`Context` refactor](https://github.com/emilk/egui/pull/1050).
-* And [many more](https://github.com/emilk/egui/graphs/contributors?type=a).
+* [@MaximOsipenko](https://github.com/MaximOsipenko): [`Context` lock refactor](https://github.com/emilk/egui/pull/2625).
+* 以及 [许多贡献者](https://github.com/emilk/egui/graphs/contributors?type=a).
 
-egui is licensed under [MIT](LICENSE-MIT) OR [Apache-2.0](LICENSE-APACHE).
+egui使用[MIT许可证](LICENSE-MIT) 或 [Apache-2.0许可证](LICENSE-APACHE)。
 
-* The flattening algorithm for the cubic bezier curve and quadratic bezier curve is from [lyon_geom](https://docs.rs/lyon_geom/latest/lyon_geom/)
+* 三次贝塞尔曲线和二次贝塞尔曲线的平坦化算法来自 [lyon_geom](https://docs.rs/lyon_geom/latest/lyon_geom/)  
+*（原文：The flattening algorithm for the cubic bezier curve and quadratic bezier curve is from* [*lyon_geom*](https://docs.rs/lyon_geom/latest/lyon_geom/) *）*
 
-Default fonts:
+默认字体：
 
 * `emoji-icon-font.ttf`: [Copyright (c) 2014 John Slegers](https://github.com/jslegers/emoji-icon-font) , MIT License
 * `Hack-Regular.ttf`: <https://github.com/source-foundry/Hack>, [MIT Licence](https://github.com/source-foundry/Hack/blob/master/LICENSE.md)

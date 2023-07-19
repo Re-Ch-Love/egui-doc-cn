@@ -2,10 +2,8 @@
 
 本仓库为 [egui](https://github.com/emilk/egui) 的中文翻译文档。如果对你有帮助请随手点亮star，感谢支持！
 
-## 目录
+## 更新日志
 
-[README_zh-hans.md](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README_zh-hans.md)
+* 2023/7/20：与 [commit cccdfd2](https://github.com/emilk/egui/commit/cccdfd246e5615d27c4a5543129153f950d0dd5c) 保持同步；对语言进行了润色，修改了部分不符合中文用语习惯的表述；修改了一些令人疑惑的翻译。
 
-## 注意
-
-*此仓库中的文档尽可能与官方英文文档同步，但不能保证即时更新，查看时请注意是否过时，目前的版本为 [commit 80ea128](https://github.com/emilk/egui/commit/80ea12877ead72eca8ff63af46229a5ac7396de6)*
+（从20023/7/20开始记录）
