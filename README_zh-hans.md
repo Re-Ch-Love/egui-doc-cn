@@ -169,7 +169,7 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 
 以下是 egui 官方集成：
 
-* [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) 用于将相同的App编译为 web/wasm 喝 desktop/native。使用 `egui-winit` 和 `egui_glow` 或 `egui-wgpu`.
+* [`eframe`](https://github.com/emilk/egui/tree/master/crates/eframe) 用于将相同的App编译为 web/wasm 和 desktop/native。使用 `egui-winit` 和 `egui_glow` 或 `egui-wgpu`.
 用于在本地和web上渲染带有glow的egui，以及制作本地应用程序。
 * [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/egui_glow) 用于在原生平台和 Web 上渲染带有 [glow](https://github.com/grovesNL/glow) 的 egui，以及制作原生App。
 * [`egui-wgpu`](https://github.com/emilk/egui/tree/master/crates/egui-wgpu) 用于 [wgpu](https://crates.io/crates/wgpu) （WebGPU API）.
