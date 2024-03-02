@@ -11,6 +11,8 @@
 
 👉 [点此运行 Web 样例](https://www.egui.rs/#demo) 👈
 
+**温馨提示：由于该翻译文档已有较长时间未更新，请读者注意辨别其中内容的时效性！**
+
 egui （读作“e-gooey”） 是一个简单、快速、可移植性强的 Rust 即时模式 GUI 库。egui 可运行于 Web, 原生（*Native*） 甚至 [你喜欢的的游戏引擎](#integrations) （很快到来）。
 
 egui 旨在成为最易用的 Rust GUI 库，用最简单的方式创建Web应用程序。
