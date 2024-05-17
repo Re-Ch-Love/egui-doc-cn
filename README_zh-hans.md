@@ -153,7 +153,7 @@ Light Theme:
 
 `egui` 中没有重量级依赖, 即使是 opt-in。
 
-`egui` 中也完全没有 **非 Wasm 友好** 的代码。
+`egui` 中也完全没有非 Wasm 友好的代码。
 
 要想加载图片到 `egui` 中，你可以使用官方的 [`egui_extras`](https://github.com/emilk/egui/tree/master/crates/egui_extras) crate.
 
@@ -358,7 +358,7 @@ All colors have premultiplied alpha, unless otherwise stated.
 
 egui uses the builder pattern for construction widgets. For instance: `ui.add(Label::new("Hello").text_color(RED));` I am not a big fan of the builder pattern (it is quite verbose both in implementation and in use) but until Rust has named, default arguments it is the best we can do. To alleviate some of the verbosity there are common-case helper functions, like `ui.label("Hello");`.
 
-Instead of using matching `begin/end` style function calls (which can be error prone) egui prefers to use `FnOnce` closures passed to a wrapping function. Lambdas are a bit ugly though, so I'd like to find a nicer solution to this. More discussion of this at <https://github.com/emilk/egui/issues/1004#issuecomment-1001650754>.
+Instead of using matching `begin/end` style function calls (which can be error prone) egui prefers to use `FnOnce` closures passed to a wrapping function. Lambdas are a bit ugly though, so I'd like to find a nicer solution to this. More discussion of this at <https://github.com/emilk/egui/issues/1004@ssuecomment-1001650754>.
 
 egui uses a single `RwLock` for short-time locks on each access of `Context` data. This is to leave implementation simple and transactional and allow users to run their UI logic in parallel. Instead of creating mutex guards, egui uses closures passed to a wrapping function, e.g. `ctx.input(|i| i.key_down(Key::A))`. This is to make it less likely that a user would accidentally double-lock the `Context`, which would lead to a deadlock.
 
