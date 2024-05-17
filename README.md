@@ -4,6 +4,8 @@
 
 [点此查看翻译](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README_zh-hans.md)
 
+如有错误，欢迎提 issues 或提交 PR！
+
 ## 更新日志
 
 * 2023/7/20：与 commit [cccdfd2](https://github.com/emilk/egui/commit/cccdfd246e5615d27c4a5543129153f950d0dd5c) 保持同步；对语言进行了润色，修改了部分不符合中文用语习惯的表述；修改了一些令人疑惑的翻译。

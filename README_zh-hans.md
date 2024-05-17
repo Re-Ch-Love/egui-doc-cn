@@ -305,7 +305,7 @@ Also see [GitHub Discussions](https://github.com/emilk/egui/discussions/categori
 * [`eventuals::Eventual`](https://docs.rs/eventuals/latest/eventuals/struct.Eventual.html)
 * [`tokio::sync::watch::channel`](https://docs.rs/tokio/latest/tokio/sync/watch/fn.channel.html)
 
-### How to I create a file dialog?
+### 如何创建文件对话框？
 
 [rfd](https://docs.rs/rfd/latest/rfd/) 的异步版本同时支持本机和Wasm。
 
