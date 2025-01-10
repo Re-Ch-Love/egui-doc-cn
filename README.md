@@ -13,3 +13,5 @@
 * 2024/5/17：与 commit [6b607ff](https://github.com/emilk/egui/commit/6b607ffa2a1f64655b5cd85c4becea9044c9bd7b) 保持同步，对小部分已有翻译进行调整。
 
 * 2024/8/8：与 commit [7b3752f](https://github.com/emilk/egui/commit/7b3752fde95534721ba410049b02ab6250866bda) 保持同步。
+
+* 2025/1/10：与 commit [3586041](https://github.com/emilk/egui/commit/35860418ac3e187da2234c8baf0f326563b675e9) 保持同步。

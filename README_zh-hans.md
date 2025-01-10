@@ -99,8 +99,7 @@ native 后端是 [`egui_glow`](https://github.com/emilk/egui/tree/master/crates/
 * 可移植：同样的代码可以跨平台使用
 * 轻松集成到任意环境中
 * 用于自定义绘制的简单 2D 图形 API（[`epaint`](https://docs.rs/epaint)）.
-* 没有回调
-* 纯即时模式
+* 纯即时模式：没有回调
 * 可扩展：[轻松为 egui 编写自己的 widgets](https://github.com/emilk/egui/blob/master/crates/egui_demo_lib/src/demo/toggle_switch.rs)
 * 模块化：你可以使用 egui 中的一小部分，并用新的方式将它们组合起来
 * 内存安全：egui 中没有`unsafe`关键字
@@ -114,7 +113,6 @@ egui *不是*框架。egui 是供调用的库，而不是供编程的环境。
 
 * 成为最强大的 GUI 库
 * 原生外观界面（*looking interface*）
-* 高级灵活的布局（这与即时模式根本不兼容）
 
 ## 状态
 
@@ -124,7 +122,7 @@ egui 在活跃开发中。它工作得很好，但缺少许多特性，接口仍
 
 ### 特性
 
-* 组件（Widgets）: label, text button, hyperlink, checkbox, radio button, slider, draggable value, text editing, color picker, spinner
+* 部件（Widgets）: label, text button, hyperlink, checkbox, radio button, slider, draggable value, text editing, color picker, spinner
 * 图片（Images）
 * 布局（Layouts）：horizontal, vertical, columns, automatic wrapping
 * 文本编辑（Text editing）: multiline, copy/paste, undo, emoji supports
@@ -136,9 +134,11 @@ egui 在活跃开发中。它工作得很好，但缺少许多特性，接口仍
 * 标签文本选择
 * 以及更多！
 
+查看[3rd party egui crates wiki](https://github.com/emilk/egui/wiki/3rd-party-egui-crates)，了解更多由社区维护的部件和功能。
+
 <img src="media/widget_gallery_0.23.gif" width="50%">
 
-Light Theme:
+亮色主题:
 
 <img src="media/widget_gallery_0.23_light.png" width="50%">
 
@@ -148,6 +148,7 @@ Light Theme:
 
 * [`ab_glyph`](https://crates.io/crates/ab_glyph)
 * [`ahash`](https://crates.io/crates/ahash)
+* [`bitflags`](https://crates.io/crates/bitflags)
 * [`nohash-hasher`](https://crates.io/crates/nohash-hasher)
 * [`parking_lot`](https://crates.io/crates/parking_lot)
 
@@ -195,29 +196,8 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 
 ### 第三方集成
 
-* [`egui-ash`](https://github.com/MatchaChoco010/egui-ash) for [`ash`](https://github.com/ash-rs/ash) (a very lightweight wrapper around Vulkan)
-* [`bevy_egui`](https://github.com/mvlabat/bevy_egui) for [the Bevy game engine](https://bevyengine.org/)
-* [`egui_gl_glfw`](https://github.com/mrclean71774/egui_gl_glfw) for [GLFW](https://crates.io/crates/glfw)
-* [`egui_glium`](https://github.com/fayalalebrun/egui_glium) for compiling native apps with [Glium](https://github.com/glium/glium)
-* [`egui-glutin-gl`](https://github.com/h3r2tic/egui-glutin-gl/) for [glutin](https://crates.io/crates/glutin)
-* [`egui_sdl2_gl`](https://crates.io/crates/egui_sdl2_gl) for [SDL2](https://crates.io/crates/sdl2)
-* [`egui_sdl2_platform`](https://github.com/ComLarsic/egui_sdl2_platform) for [SDL2](https://crates.io/crates/sdl2)
-* [`egui_vulkano`](https://github.com/derivator/egui_vulkano) for [Vulkano](https://github.com/vulkano-rs/vulkano)
-* [`egui_winit_vulkano`](https://github.com/hakolao/egui_winit_vulkano) for [Vulkano](https://github.com/vulkano-rs/vulkano)
-* [`egui-macroquad`](https://github.com/optozorax/egui-macroquad) for [macroquad](https://github.com/not-fl3/macroquad)
-* [`egui-miniquad`](https://github.com/not-fl3/egui-miniquad) for [Miniquad](https://github.com/not-fl3/miniquad)
-* [`egui_speedy2d`](https://github.com/heretik31/egui_speedy2d) for [Speedy2d](https://github.com/QuantumBadger/Speedy2D)
-* [`egui-tetra2`](https://crates.io/crates/egui-tetra2) for [Tetra](https://crates.io/crates/tetra), a 2D game framework
-* [`egui-winit-ash-integration`](https://github.com/MatchaChoco010/egui-winit-ash-integration) for [winit](https://github.com/rust-windowing/winit) and [ash](https://github.com/MaikKlein/ash)
-* [`fltk-egui`](https://crates.io/crates/fltk-egui) for [fltk-rs](https://github.com/fltk-rs/fltk-rs)
-* [`ggegui`](https://github.com/NemuiSen/ggegui) for the [ggez](https://ggez.rs/) game framework
-* [`godot-egui`](https://github.com/setzer22/godot-egui) for [godot-rust](https://github.com/godot-rust/godot-rust)
-* [`nannou_egui`](https://github.com/nannou-org/nannou/tree/master/nannou_egui) for [nannou](https://nannou.cc)
-* [`notan_egui`](https://github.com/Nazariglez/notan/tree/main/crates/notan_egui) for [notan](https://github.com/Nazariglez/notan)
-* [`screen-13-egui`](https://github.com/attackgoat/screen-13/tree/master/contrib/screen-13-egui) for [Screen 13](https://github.com/attackgoat/screen-13)
-* [`egui_skia`](https://github.com/lucasmerlin/egui_skia) for [skia](https://github.com/rust-skia/rust-skia/tree/master/skia-safe)
-* [`smithay-egui`](https://github.com/Smithay/smithay-egui) for [smithay](https://github.com/Smithay/smithay/)
-* [`tauri-egui`](https://github.com/tauri-apps/tauri-egui) for [tauri](https://github.com/tauri-apps/tauri)
+查看wiki来寻找 [3rd party integrations](https://github.com/emilk/egui/wiki/3rd-party-integrations) 
+以及 [egui crates](https://github.com/emilk/egui/wiki/3rd-party-egui-crates).
 
 ### 编写您自己的 egui 集成
 
@@ -259,9 +239,10 @@ egui 自身不知道且不关心运行它的操作系统和被渲染到屏幕的
 
 一种解决方法是提前存储界面尺寸并在下一帧使用。这就产生了一个帧延迟，第一帧就会偶尔出现闪烁。 `egui` 对于如窗口和网格布局，都是如此。
 
-也可以调用两次布局代码（一次获取尺寸，第二次进行下一次交互），但是成本更高，而且实现起来也更复杂，何况某些情况下两次不够。 `egui` 不会这样做。
+“第一帧抖动”可以用一个额外的 _pass_ 来掩盖，egui通过`Context:：request_discard`来支持。
+这样做的缺点是第二次通过会增加CPU成本，因此egui只在极少数情况下才这样做（大多数帧是单次pass）。
 
-对于"atomic" widgets部件 (例如一个 button) `egui` 在显示之前就知道尺寸，所以`egui`中可以将按钮、标签等放在中间，而不需要任何特殊的操作。
+对于"原子的" 部件 (例如按钮) `egui` 在显示之前就知道尺寸，所以`egui`中可以将按钮、标签等放在中间，而不需要任何特殊的操作。
 
 更多请参考 [this issue](https://github.com/emilk/egui/issues/4378)。
 
