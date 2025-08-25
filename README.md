@@ -15,3 +15,5 @@
 * 2024/8/8：与 commit [7b3752f](https://github.com/emilk/egui/commit/7b3752fde95534721ba410049b02ab6250866bda) 保持同步。
 
 * 2025/1/10：与 commit [3586041](https://github.com/emilk/egui/commit/35860418ac3e187da2234c8baf0f326563b675e9) 保持同步。
+
+* 2025/8/25：与 commit [a126be4](https://github.com/emilk/egui/commit/a126be4dc15f30d692a8fd176bc42972009376a9) 保持同步。
