@@ -1,6 +1,6 @@
 # egui-doc-cn
 
-本仓库为 [egui](https://github.com/emilk/egui) 的中文翻译文档。
+本仓库为 [egui](https://github.com/emilk/egui) 的中文翻译README，目的是为了便于中文使用者快速了解egui，并不是egui的中文翻译文档。
 
 [点此查看翻译](https://github.com/Re-Ch-Love/egui-doc-cn/blob/main/README_zh-hans.md)
 
